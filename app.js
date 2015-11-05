@@ -37,3 +37,9 @@ window.onload = e => {
   formatInput.addEventListener('input', e => formatOutput.value = formatHTML(formatInput.value, '  '));
 
 };
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('service-worker.js', {
+    scope: '/xml-format/'
+  }).catch(error => console.error(error));
+}
