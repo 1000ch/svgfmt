@@ -7,15 +7,14 @@ const formatHTML = (string, indent) => {
   const tagEnd = />/g;
 
   let html = '';
-  let lines = '';
   let depth = 0;
 
-  let strings = string.split('\n');
-  for (let string of strings) {
-    lines += string.replace(tagEnd, matched => `${matched}\n`).trim();
-  }
+  let strings = string
+    .replace(/\n/g, '')
+    .replace(tagEnd, matched => `${matched}\n`)
+    .trim()
+    .split('\n');
 
-  strings = lines.split('\n');
   for (let string of strings) {
     if (string.match(openingTag)) {
       depth++;
