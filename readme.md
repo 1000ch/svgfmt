@@ -1,1 +1,3 @@
-# xml-format
+# [xml-format](https://1000ch.github.io/xml-format/)
+
+Format XML, HTML, SVG...

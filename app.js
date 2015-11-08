@@ -1,40 +1,65 @@
 'use strict'
 
-const formatHTML = (string, indent) => {
+const parseXML = require('xml-parser');
 
-  const openingTag = /(\<[a-zA-Z\d\-]+.*\>)/g;
-  const closingTag = /\<\/([a-zA-Z\d\-]+)\>/g;
-  const tagEnd = />/g;
+const createIndent = depth => Array(depth * 2 + 1).join(' ');
 
-  let html = '';
-  let depth = 0;
-
-  let strings = string
-    .replace(/\n/g, '')
-    .replace(tagEnd, matched => `${matched}\n`)
-    .trim()
-    .split('\n');
-
-  for (let string of strings) {
-    if (string.match(openingTag)) {
-      depth++;
-    }
-    html += `${new Array(depth).join(indent)}${string}\n`;
-    if (string.match(closingTag)) {
-      depth--;
-    }
+const createAttributes = attributes => {
+  let keys = Object.keys(attributes);
+  if (keys.length) {
+    return keys.map(key => ` ${key}="${attributes[key]}"`);
+  } else {
+    return '';
   }
+};
 
-  return html;
+const createOpenTag = object => `<${object.name}${createAttributes(object.attributes)}>`;
+
+const createCloseTag = object => `</${object.name}>`;
+
+const createIsolateTag = object => {
+  if (object.content) {
+    return `<${object.name}${createAttributes(object.attributes)}>${object.content}</${object.name}>`;
+  } else {
+    return `<${object.name}${createAttributes(object.attributes)} />`;
+  }
+};
+
+const createXML = (object, depth) => {
+  let xml = '';
+  if (object.children.length) {
+    xml += `${createIndent(depth)}${createOpenTag(object)}\n`;
+    if (object.content) {
+      xml += `${createIndent(depth + 1)}${object.content}\n`;
+    }
+    object.children.forEach(child => {
+      xml += createXML(child, depth + 1);
+    });
+    xml += `${createIndent(depth)}${createCloseTag(object)}\n`;
+  } else {
+    xml += `${createIndent(depth)}${createIsolateTag(object)}\n`;
+  }
+  return xml;
+};
+
+const formatXML = (string, indent) => {
+  let xml = '';
+  try {
+    let ast = parseXML(string);
+    if (ast.declaration) {
+      xml += `<xml${createAttributes(ast.declaration)}>`;
+    }
+    xml += createXML(ast.root, 0);
+  } catch (e) {
+    return string;
+  }
+  return xml;
 };
 
 window.onload = e => {
-
   const formatInput  = document.querySelector('#format-input');
   const formatOutput = document.querySelector('#format-output');
-
-  formatInput.addEventListener('input', e => formatOutput.value = formatHTML(formatInput.value, '  '));
-
+  formatInput.addEventListener('input', e => formatOutput.value = formatXML(formatInput.value, '  '));
 };
 
 if (navigator.serviceWorker) {
