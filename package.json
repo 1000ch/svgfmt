@@ -1,7 +1,7 @@
 {
-  "name": "xmlfmt",
+  "name": "svgfmt",
   "version": "1.0.0",
-  "description": "Format XML.",
+  "description": "Format SVG string.",
   "main": "index.js",
   "scripts": {
     "build": "browserify app.js > tmp.js && ./node_modules/es6-minify/es6-minify.js tmp.js > bundle.js && rm tmp.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1000ch/xmlfmt.git"
+    "url": "git+https://github.com/1000ch/svgfmt.git"
   },
   "author": "1000ch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/1000ch/xmlfmt/issues"
+    "url": "https://github.com/1000ch/svgfmt/issues"
   },
-  "homepage": "https://github.com/1000ch/xmlfmt#readme",
+  "homepage": "https://github.com/1000ch/svgfmt#readme",
   "devDependencies": {
     "ava": "*",
     "browserify": "^12.0.1",

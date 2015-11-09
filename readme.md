@@ -1,14 +1,13 @@
-# [xmlfmt](https://1000ch.github.io/xmlfmt/)
-[![Build Status](https://travis-ci.org/1000ch/xmlfmt.svg?branch=master)](https://travis-ci.org/1000ch/xmlfmt)
+# [svgfmt](https://1000ch.github.io/svgfmt/) [![Build Status](https://travis-ci.org/1000ch/svgfmt.svg?branch=master)](https://travis-ci.org/1000ch/svgfmt)
 
-Format XML string.
+Format SVG string.
 
 ## Usage
 
 ```javascript
-import xmlfmt from 'xmlfmt';
+import svgfmt from 'svgfmt';
 
-xmlfmt('<foo>Foo!</foo>');
+svgfmt('<foo>Foo!</foo>');
 ```
 
 ## License
