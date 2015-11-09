@@ -1,22 +1,24 @@
 {
-  "name": "xml-format",
+  "name": "xmlfmt",
   "version": "1.0.0",
-  "description": "Format XML, HTML, SVG, etc.",
-  "main": "app.js",
+  "description": "Format XML.",
+  "main": "index.js",
   "scripts": {
-    "build": "browserify app.js > tmp.js && ./node_modules/es6-minify/es6-minify.js tmp.js > bundle.js && rm tmp.js"
+    "build": "browserify app.js > tmp.js && ./node_modules/es6-minify/es6-minify.js tmp.js > bundle.js && rm tmp.js",
+    "test": "ava"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1000ch/xml-format.git"
+    "url": "git+https://github.com/1000ch/xmlfmt.git"
   },
   "author": "1000ch",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/1000ch/xml-format/issues"
+    "url": "https://github.com/1000ch/xmlfmt/issues"
   },
-  "homepage": "https://github.com/1000ch/xml-format#readme",
+  "homepage": "https://github.com/1000ch/xmlfmt#readme",
   "devDependencies": {
+    "ava": "*",
     "browserify": "^12.0.1",
     "es6-minify": "git+https://github.com/ariya/es6-minify.git"
   },
