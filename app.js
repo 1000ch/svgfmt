@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
 const formatSVG = require('./');
 
-window.onload = e => {
-  const formatInput  = document.querySelector('#format-input');
+window.onload = () => {
+  const formatInput = document.querySelector('#format-input');
   const formatOutput = document.querySelector('#format-output');
-  formatInput.addEventListener('input', e => formatOutput.value = formatSVG(formatInput.value, '  '));
+  formatInput.addEventListener('input', () => formatOutput.value = formatSVG(formatInput.value, '  '));
 };
 
 if (navigator.serviceWorker) {

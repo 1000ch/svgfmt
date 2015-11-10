@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const parseXML = require('xml-parser');
 
@@ -17,11 +17,13 @@ const createOpenTag = object => `<${object.name}${createAttributes(object.attrib
 const createCloseTag = object => `</${object.name}>`;
 
 const createIsolateTag = object => {
+  let xml = '';
   if (object.content) {
-    return `<${object.name}${createAttributes(object.attributes)}>${object.content}</${object.name}>`;
+    xml += `<${object.name}${createAttributes(object.attributes)}>${object.content}</${object.name}>`;
   } else {
-    return `<${object.name}${createAttributes(object.attributes)} />`;
+    xml += `<${object.name}${createAttributes(object.attributes)} />`;
   }
+  return xml;
 };
 
 const createXML = (object, depth) => {
@@ -41,7 +43,7 @@ const createXML = (object, depth) => {
   return xml;
 };
 
-const formatXML = (string, indent) => {
+const formatXML = string => {
   let xml = '';
   try {
     let ast = parseXML(string);
