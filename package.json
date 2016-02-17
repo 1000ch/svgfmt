@@ -24,7 +24,8 @@
     "xo": "*"
   },
   "dependencies": {
-    "xml-parser": "^1.2.1"
+    "xml-parser": "^1.2.1",
+    "xml-stringify": "^1.0.0"
   },
   "xo": {
     "envs": ["node", "browser"],
