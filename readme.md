@@ -5,7 +5,7 @@ Format SVG string.
 ## Usage
 
 ```javascript
-import svgfmt from 'svgfmt';
+const svgfmt = require('svgfmt');
 
 svgfmt('<foo>Foo!</foo>');
 ```

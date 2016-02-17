@@ -11,6 +11,18 @@ self.addEventListener('install', e => {
   );
 });
 
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(cacheName => cacheName !== CACHE_KEY)
+          .map(cacheName => caches.delete(cacheName))
+      );
+    }).catch(e => console.error(e))
+  );
+});
+
 self.addEventListener('fetch', e => {
   e.respondWith(
     caches.open(CACHE_KEY).then(cache => {
