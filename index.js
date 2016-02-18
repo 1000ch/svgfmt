@@ -3,10 +3,10 @@
 const parse = require('xml-parser');
 const stringify = require('xml-stringify');
 
-function svgfmt(string) {
+function svgfmt(string, indent) {
   try {
     let ast = parse(string);
-    return stringify(ast);
+    return stringify(ast, indent || 2);
   } catch (e) {
     throw e;
   }

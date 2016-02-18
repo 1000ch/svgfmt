@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "xml-parser": "^1.2.1",
-    "xml-stringify": "^1.0.0"
+    "xml-stringify": "^1.1.0"
   },
   "xo": {
     "envs": [
