@@ -1,37 +1,34 @@
 const CACHE_KEY = 'v1';
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_KEY).then(cache => {
-      return cache.addAll([
-        'index.html',
-        'bundle.js'
-      ]);
-    }).catch(error => console.log(error))
-  );
+self.addEventListener('install', async event => {
+  const cache = await caches.open(CACHE_KEY);
+  await cache.addAll([
+    'index.html',
+    'bundle.js'
+  ]);
+
+  event.waitUntil(cache);
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
-          .filter(cacheName => cacheName !== CACHE_KEY)
-          .map(cacheName => caches.delete(cacheName))
-      );
-    }).catch(error => console.error(error))
-  );
+  const cacheNames = caches.keys();
+  const promises = cacheNames
+    .filter(cacheName => cacheName !== CACHE_KEY)
+    .map(cacheName => caches.delete(cacheName));
+
+  event.waitUntil(Promise.all(promises));
 });
 
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.open(CACHE_KEY).then(cache => {
-      return cache.match(event.request).then(response => {
-        return response || fetch(event.request.clone()).then(response => {
-          cache.put(event.request, response.clone());
-          return response;
-        });
-      });
-    })
-  );
+self.addEventListener('fetch', async event => {
+  const cache = await caches.open(CACHE_KEY);
+  const cachedResponse = await cache.match(event.request);
+
+  if (cachedResponse) {
+    return event.respondWith(cachedResponse);
+  }
+
+  const response = await fetch(event.request.clone());
+  await cache.put(event.request, response.clone());
+
+  event.respondWith(response);
 });
