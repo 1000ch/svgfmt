@@ -1,12 +1,13 @@
 'use strict';
+const svgfmt = require('.');
 
-const svgfmt = require('./');
-
-window.onload = () => {
+window.addEventListener('load', () => {
   const formatInput = document.querySelector('#format-input');
   const formatOutput = document.querySelector('#format-output');
-  formatInput.addEventListener('input', () => formatOutput.value = svgfmt(formatInput.value, '  '));
-};
+  formatInput.addEventListener('input', () => {
+    formatOutput.value = svgfmt(formatInput.value, '  ');
+  });
+});
 
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('service-worker.js', {

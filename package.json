@@ -4,7 +4,7 @@
   "description": "Format SVG string.",
   "main": "index.js",
   "scripts": {
-    "build": "browserify app.js > tmp.js && ./node_modules/es6-minify/es6-minify.js tmp.js > bundle.js && rm tmp.js",
+    "build": "browserify app.js > bundle.js",
     "test": "xo && ava"
   },
   "repository": {
@@ -18,10 +18,9 @@
   },
   "homepage": "https://github.com/1000ch/svgfmt#readme",
   "devDependencies": {
-    "ava": "*",
-    "browserify": "^12.0.1",
-    "es6-minify": "git+https://github.com/ariya/es6-minify.git",
-    "xo": "*"
+    "ava": "^3.9.0",
+    "browserify": "^16.5.1",
+    "xo": "^0.32.0"
   },
   "dependencies": {
     "xml-parser": "^1.2.1",
