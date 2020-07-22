@@ -11,7 +11,11 @@
     "url": "git+https://github.com/1000ch/svgfmt.git"
   },
   "license": "MIT",
-  "author": "1000ch",
+  "author": {
+    "name": "Shogo Sensui",
+    "email": "shogosensui@gmail.com",
+    "url": "https://github.com/1000ch"
+  },
   "main": "index.js",
   "scripts": {
     "build": "browserify app.js > bundle.js",
@@ -26,7 +30,7 @@
   },
   "dependencies": {
     "xml-parser": "^1.2.1",
-    "xml-stringify": "^1.1.0"
+    "xml-stringify": "^2.0.0"
   },
   "devDependencies": {
     "ava": "^3.9.0",

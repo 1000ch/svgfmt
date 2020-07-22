@@ -935,7 +935,7 @@ function parse(xml) {
 'use strict';
 
 function createIndent(depth, indent) {
-  return Array(depth + 1).join(indent);
+  return new Array(depth + 1).join(indent);
 }
 
 function createAttributes(attributes) {
@@ -961,17 +961,19 @@ function createIsolateTag(object) {
   } else {
     xml += `<${object.name}${createAttributes(object.attributes)} />`;
   }
+
   return xml;
 }
 
 function createXML(object, depth, indent) {
   let xml = '';
-  let br = indent.length === 0 ? '' : '\n';
-  if (object.children.length) {
+  const br = indent.length === 0 ? '' : '\n';
+  if (object.children.length > 0) {
     xml += `${createIndent(depth, indent)}${createOpenTag(object)}${br}`;
     if (object.content) {
       xml += `${createIndent(depth + 1, indent)}${object.content}${br}`;
     }
+
     object.children.forEach(child => {
       xml += createXML(child, depth + 1, indent);
     });
@@ -979,22 +981,24 @@ function createXML(object, depth, indent) {
   } else {
     xml += `${createIndent(depth, indent)}${createIsolateTag(object)}${br}`;
   }
+
   return xml;
 }
 
 function stringify(ast, arg) {
   let indent = '';
   if (typeof arg === 'number') {
-    indent = ' '.repeat(parseInt(arg, 10));
+    indent = ' '.repeat(Number.parseInt(arg, 10));
   } else if (typeof arg === 'string') {
     indent = arg;
   }
 
   let xml = '';
-  let br = indent.length === 0 ? '' : '\n';
+  const br = indent.length === 0 ? '' : '\n';
   if (ast.declaration) {
     xml += `<?xml${createAttributes(ast.declaration.attributes)}?>${br}`;
   }
+
   xml += createXML(ast.root, 0, indent);
 
   return xml;

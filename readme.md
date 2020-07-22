@@ -1,6 +1,12 @@
-# [svgfmt](https://1000ch.github.io/svgfmt/) [![Build Status](https://travis-ci.org/1000ch/svgfmt.svg?branch=master)](https://travis-ci.org/1000ch/svgfmt)
+# svgfmt [![Build Status](https://travis-ci.org/1000ch/svgfmt.svg?branch=master)](https://travis-ci.org/1000ch/svgfmt)
 
 Format SVG string.
+
+## Install
+
+```sh
+npm install svgfmt
+```
 
 ## Usage
 
@@ -12,4 +18,4 @@ svgfmt('<foo>Foo!</foo>');
 
 ## License
 
-MIT: http://1000ch.mit-license.org
+[MIT](https://1000ch.mit-license.org) © [Shogo Sensui](https://github.com/1000ch)
