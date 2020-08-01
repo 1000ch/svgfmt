@@ -18,7 +18,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "browserify app.js > bundle.js",
+    "build": "parcel build src/app.js",
     "test": "xo && ava"
   },
   "xo": {
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "ava": "^3.9.0",
-    "browserify": "^16.5.1",
+    "parcel-bundler": "^1.12.4",
     "xo": "^0.32.0"
   },
   "engines": {
