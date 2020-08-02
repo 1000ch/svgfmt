@@ -1,6 +1,7 @@
+import {documentReady} from 'html-ready';
 import svgfmt from '..';
 
-window.addEventListener('load', () => {
+documentReady.then(() => {
   const formatInput = document.querySelector('#format-input');
   const formatOutput = document.querySelector('#format-output');
   const formatError = document.querySelector('#format-error');

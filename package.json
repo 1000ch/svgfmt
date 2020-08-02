@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "ava": "^3.9.0",
+    "html-ready": "^2.1.0",
     "parcel-bundler": "^1.12.4",
     "xo": "^0.32.0"
   },
