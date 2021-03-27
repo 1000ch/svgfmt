@@ -1,4 +1,4 @@
-# svgfmt [![Build Status](https://travis-ci.org/1000ch/svgfmt.svg?branch=master)](https://travis-ci.org/1000ch/svgfmt)
+# svgfmt ![test](https://github.com/1000ch/svgfmt/actions/workflows/test.yml/badge.svg)
 
 Format SVG string.
 
